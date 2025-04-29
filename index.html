@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body, html {
+	height: 99%;
+	font-family: "Lato", sans-serif;
+} 
+.accordion {
+	border: solid black 2px;
+	background-color: CornFlowerBlue;
+	color: white;
+	width: 100%;
+	margin:-10px 0;
+	padding: 18px;
+	text-align: left;
+	font-size: 15px;
+	cursor: pointer;
+}
+.accordion:hover {
+	background-color: mediumVioletRed;
+}
+.accordion:after {
+	float: right;
+	color: white;
+	margin-right: 5px;
+	font-weight: bold;
+	content: '+';
+}
+.active:after {
+	color: white;
+	content: '-';
+}
+.panel {
+	padding: 0 16px;
+	background-color: white;
+	max-height: 0;
+	overflow: hidden;
+	text-align: center;
+}
+button {
+	background-color: CornFlowerBlue;
+	color: white;
+	margin: 3px;
+	padding: 15px 24px;
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+	cursor: pointer;
+}
+button:hover {
+	background-color: Navy;
+}
+.playerArea {
+	position: fixed;
+
+	width: 75%;
+	height: 88%;
+	
+	margin: 0px;
+	background: black;
+	display:none;
+}
+</style>
+</head>
+<script type="text/javascript" src="https://istanbuluseyret.ibb.gov.tr/wp-content/plugins/bradmax-player/assets/js/default_player.js" id="bradmax-player-js"></script>
+<body>
+	<table style='width: 100%; height:100%;'>
+		<tr>
+			<td colspan='2'>
+				<button class="accordion" style='border-radius: 0'>Hakkında</button>
+				<div class="panel">
+				  <pre>Tasarım: Murat YILDIZ (yildizmur@itu.edu.tr)
+				  <br>Veri Kaynağı: İBB
+				  <br>Ürün: Turistik Kameralar
+				  <br>Sürüm: 1.0</pre>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td style='width: 200px; border: solid 2px black; vertical-align: top'>
+				<div id='buttons' style='width:100%'></div>
+			</td>
+			<td style='vertical-align: top'>
+				<div id="bradmaxPlayer" class='playerArea'></div>
+			</td>
+		</tr>
+	</table>
+</body>
+<script>
+var acc = document.getElementsByClassName("accordion");
+
+acc[0].addEventListener("click", function() {
+	this.classList.toggle("active");
+	var panel = this.nextElementSibling;
+	
+	if (panel.style.maxHeight) {
+		panel.style.maxHeight = null;
+	} else {
+		panel.style.maxHeight = panel.scrollHeight + "px";
+	} 
+});
+
+const places = [
+	['Eminönü',			'b_eminonu'],
+	['Eyüp Sultan',		'b_eyupsultan'],
+	['Sultanahmet - 1',	'b_sultanahmet'],
+	['Sultanahmet - 2',	'b_sultanahmet2'],
+	['Kapalı Çarşı',	'b_kapalicarsi'],
+	['Beyazıt Meydanı',	'b_beyazitmeydani'],
+	['Beyazıt - 1',		'b_beyazitkule'],
+	['Beyazıt - 2',		'b_beyazitkule2'],
+];
+
+for (var i = 0; i < places.length; i++){
+	let button = document.createElement('BUTTON');
+
+	button.innerHTML = places[i][0];
+	button.setAttribute('id', 'place' + i);
+	button.setAttribute('onclick', 'ButtonClick(this)');
+	
+	document.getElementById('buttons').appendChild(button);
+}
+
+var player = null;
+
+function bradmaxPlayerInit(url) {
+	if(window.player){ window.bradmax.player.destroy(player); }
+	
+	var bradmaxPlayerConfig = {
+								"showErrorDetails":false,"contextMenuDisabled": true,
+								"dataProvider":{"source":[{"url":url}]},
+								"autoplay":true,
+								"mute":true
+							};
+	var element = document.getElementById("bradmaxPlayer");
+	player = window.bradmax.player.create(element, bradmaxPlayerConfig);
+	
+	if(!window.player){ window.player = player; }
+}
+
+function ButtonClick(id){
+	var url = '';
+	
+	for (var i = 0; i < places.length; i++){
+		let button = document.getElementById('place' + i);
+		
+		if (places[i][0].includes(id.innerHTML) == true){
+			url = places[i][1];
+			button.style.background = 'Navy';
+		}else{
+			button.style.background = 'CornFlowerBlue';
+		}
+	}
+	
+	if(window.bradmax && window.bradmax.player) {
+		url = 'https:\/\/hls.ibb.gov.tr\/ls\/cam_turistik\/' + url + '.stream\/playlist.m3u8';
+		bradmaxPlayerInit(url);
+	} else {
+		window.addEventListener('load', bradmaxPlayerInit);
+	}
+	
+	document.getElementById('bradmaxPlayer').style.display = 'block';
+}
+</script>
+</html>
