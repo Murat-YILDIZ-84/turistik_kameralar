@@ -70,10 +70,10 @@ button:hover {
 			<td colspan='2'>
 				<button class="accordion" style='border-radius: 0'>Hakkında</button>
 				<div class="panel">
-				  <pre>Tasarım: Murat YILDIZ (yildizmur@itu.edu.tr)
-				  <br>Veri Kaynağı: İBB
+				  <pre>Veri Kaynağı: İBB
 				  <br>Ürün: Turistik Kameralar
-				  <br>Sürüm: 1.0</pre>
+				  <br>Sürüm: 1.1 (Test amaçlıdır)
+				  <br>Murat YILDIZ (yildizmur@itu.edu.tr)</pre>
 				</div>
 			</td>
 		</tr>
@@ -109,7 +109,7 @@ const places = [
 	['Kapalı Çarşı',	'b_kapalicarsi'],
 	['Beyazıt Meydanı',	'b_beyazitmeydani'],
 	['Beyazıt - 1',		'b_beyazitkule'],
-	['Beyazıt - 2',		'b_beyazitkule2'],
+	['Beyazıt - 2',		'b_beyazitkule2new'],
 ];
 
 for (var i = 0; i < places.length; i++){
@@ -154,7 +154,8 @@ function ButtonClick(id){
 	}
 	
 	if(window.bradmax && window.bradmax.player) {
-		url = 'https:\/\/hls.ibb.gov.tr\/ls\/cam_turistik\/' + url + '.stream\/playlist.m3u8';
+		//url = 'https:\/\/livestream.ibb.gov.tr\/ls\/cam_turistik\/' + url + '.stream\/playlist.m3u8';
+		url = "https:\/\/livestream.ibb.gov.tr\/cam_turistik\/" + url + ".stream\/playlist.m3u8";
 		bradmaxPlayerInit(url);
 	} else {
 		window.addEventListener('load', bradmaxPlayerInit);
@@ -163,4 +164,5 @@ function ButtonClick(id){
 	document.getElementById('bradmaxPlayer').style.display = 'block';
 }
 </script>
+</html>
 </html>
