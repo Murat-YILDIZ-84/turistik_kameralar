@@ -127,16 +127,13 @@ var player = null;
 function bradmaxPlayerInit(url) {
 	if(window.player){ window.bradmax.player.destroy(player); }
 	
-	/*
 	var bradmaxPlayerConfig = {
 								"showErrorDetails":false,"contextMenuDisabled": true,
-								"dataProvider":{"source":[{"url":url}]},
 								"autoplay":true,
 								"mute":true
 							};
 	var element = document.getElementById("bradmaxPlayer");
 	player = window.bradmax.player.create(element, bradmaxPlayerConfig);
-	*/
 	
 	if(!window.player){ window.player = player; }
 }
