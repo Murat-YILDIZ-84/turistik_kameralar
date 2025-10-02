@@ -58,7 +58,7 @@ button:hover {
 	
 	margin: 0px;
 	background: black;
-	display:none;
+	display:block;
 }
 </style>
 <script type="text/javascript" src="https://istanbuluseyret.ibb.gov.tr/wp-content/plugins/bradmax-player/assets/js/default_player.js" id="bradmax-player-js"></script>
@@ -122,46 +122,21 @@ for (var i = 0; i < places.length; i++){
 
 var player = null;
 
-function bradmaxPlayerInit(url) {
-	if(window.player){ window.bradmax.player.destroy(player); }
+function ButtonClick(id){
+	url = "https:\/\/livestream.ibb.gov.tr\/cam_turistik\/b_kapalicarsi.stream\/playlist.m3u8";
+	//if(window.player){ window.bradmax.player.destroy(player); }
 	
 	var bradmaxPlayerConfig = {
-								"showErrorDetails":false,
-								"contextMenuDisabled": true,
-								"dataProvider":{"source":[{"url":url}]},
-								"autoplay":true,
-								"mute":true
-							};
+		"showErrorDetails":false,
+		"contextMenuDisabled": true,
+		"dataProvider":{"source":[{"url":url}]},
+		"autoplay":true,
+		"mute":true
+	};
 
 	var element = document.getElementById("bradmaxPlayer");
-	//player = window.bradmax.player.create(element, bradmaxPlayerConfig);
-	player = window.bradmax.player.create(element, null);
-
-	if(!window.player){ window.player = player; }
-}
-
-function ButtonClick(id){
-	var url = '';
-	
-	for (var i = 0; i < places.length; i++){
-		let button = document.getElementById('place' + i);
-		
-		if (places[i][0].includes(id.innerHTML) == true){
-			url = places[i][1];
-			button.style.background = 'Navy';
-		}else{
-			button.style.background = 'CornFlowerBlue';
-		}
-	}
-	
-	if(window.bradmax && window.bradmax.player) {
-		url = "https:\/\/livestream.ibb.gov.tr\/cam_turistik\/" + url + ".stream\/playlist.m3u8";
-		bradmaxPlayerInit(url);
-	} else {
-		window.addEventListener('load', bradmaxPlayerInit);
-	}
-	
-	document.getElementById('bradmaxPlayer').style.display = 'block';
+	player = window.bradmax.player.create(element, bradmaxPlayerConfig);
+	//player = window.bradmax.player.create(element, null);
 }
 </script>
 </body>
