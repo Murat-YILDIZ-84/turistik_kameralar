@@ -61,7 +61,7 @@ button:hover {
 	display:none;
 }
 </style>
-<script type="text/javascript" src="https://istanbuluseyret.ibb.gov.tr/wp-content/plugins/bradmax-player/assets/js/default_player.js" id="bradmax-player-js"></script>
+<script src="https://istanbuluseyret.ibb.gov.tr/wp-content/plugins/bradmax-player/assets/js/default_player.js" id="bradmax-player-js"></script>
 </head>
 <body>
 <table style='width: 100%; height:100%;'>
@@ -133,7 +133,7 @@ function bradmaxPlayerInit(url) {
 							};
 	//console.log(bradmaxPlayerConfig);
 	var element = document.getElementById("bradmaxPlayer");
-	//player = window.bradmax.player.create(element, bradmaxPlayerConfig);
+	player = window.bradmax.player.create(element, bradmaxPlayerConfig);
 
 	if(!window.player){ window.player = player; }
 }
