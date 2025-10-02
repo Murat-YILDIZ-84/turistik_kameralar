@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
 <style>
 body, html {
@@ -62,31 +61,30 @@ button:hover {
 	display:none;
 }
 </style>
-</head>
 <script type="text/javascript" src="https://istanbuluseyret.ibb.gov.tr/wp-content/plugins/bradmax-player/assets/js/default_player.js" id="bradmax-player-js"></script>
+</head>
 <body>
-	<table style='width: 100%; height:100%;'>
-		<tr>
-			<td colspan='2'>
-				<button class="accordion" style='border-radius: 0'>Hakkında</button>
-				<div class="panel">
-				  <pre>Veri Kaynağı: İBB
-				  <br>Ürün: Turistik Kameralar
-				  <br>Sürüm: 1.1 (Test amaçlıdır)
-				  <br>Murat YILDIZ (yildizmur@itu.edu.tr)</pre>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td style='width: 200px; border: solid 2px black; vertical-align: top'>
-				<div id='buttons' style='width:100%'></div>
-			</td>
-			<td style='vertical-align: top'>
-				<div id="bradmaxPlayer" class='playerArea'></div>
-			</td>
-		</tr>
-	</table>
-</body>
+<table style='width: 100%; height:100%;'>
+	<tr>
+		<td colspan='2'>
+			<button class="accordion" style='border-radius: 0'>Hakkında</button>
+			<div class="panel">
+			  <pre>Veri Kaynağı: İBB
+			  <br>Ürün: Turistik Kameralar
+			  <br>Sürüm: 1.1 (Test amaçlıdır)
+			  <br>Murat YILDIZ (yildizmur@itu.edu.tr)</pre>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style='width: 200px; border: solid 2px black; vertical-align: top'>
+			<div id='buttons' style='width:100%'></div>
+		</td>
+		<td style='vertical-align: top'>
+			<div id="bradmaxPlayer" class='playerArea'></div>
+		</td>
+	</tr>
+</table>
 <script>
 var acc = document.getElementsByClassName("accordion");
 
@@ -133,10 +131,10 @@ function bradmaxPlayerInit(url) {
 								"autoplay":true,
 								"mute":true
 							};
-	console.log(bradmaxPlayerConfig);
-	//var element = document.getElementById("bradmaxPlayer");
+	//console.log(bradmaxPlayerConfig);
+	var element = document.getElementById("bradmaxPlayer");
 	//player = window.bradmax.player.create(element, bradmaxPlayerConfig);
-	
+
 	if(!window.player){ window.player = player; }
 }
 
@@ -164,5 +162,5 @@ function ButtonClick(id){
 	document.getElementById('bradmaxPlayer').style.display = 'block';
 }
 </script>
-</html>
+</body>
 </html>
